@@ -1,0 +1,39 @@
+﻿@model IEnumerable<YelpCamp.Models.CampSite>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2>Campsites</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a class="btn btn-primary text-white" asp-action="Create">New Campsite</a>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row row-cols-3">
+
+                @if (Model.Count() > 0)
+                {
+                    @foreach (var obj in Model)
+                    {
+                        <div class="col">
+                            <div class="card">
+                                <img src="@obj.ImageUrl" class="card-img-top" alt="" />
+
+                                <div class="card-body">
+                                    <h5 class="card-title">@obj.Title</h5>
+                                    <p class="card-text">@obj.Description</p>
+
+                                </div>
+                                <div class="card-footer">
+                                    <a class="btn btn-primary text-white">Edit</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    }
+                }
+        </div>
+    </div>
+
+</div>
