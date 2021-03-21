@@ -42,6 +42,50 @@ namespace YelpCamp.Controllers
             return View(obj);
         }
 
+        // GET - EDIT
+        public IActionResult Edit(int? id)
+        {
+            if(id == 0)
+            {
+                return NotFound();
+            }
+            var obj = _db.Campsite.Find(id);
+            if(obj == null)
+            {
+                return NotFound();
+            }
+            return View(obj);
+        }
+
+        //POST - EDIT
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(CampSite obj)
+        {
+            if(ModelState.IsValid)
+            {
+                _db.Campsite.Update(obj);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(obj);
+        }
+
+        // POST DELETE
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Delete(int? id)
+        {
+            var obj = _db.Campsite.Find(id);
+            if(obj == null)
+            {
+                return NotFound();
+            }
+            _db.Campsite.Remove(obj);
+            _db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
 
     }
 }
