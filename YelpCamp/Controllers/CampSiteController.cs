@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using YelpCamp.Data;
 using YelpCamp.Models;
+using YelpCamp.Models.ViewModels;
 
 namespace YelpCamp.Controllers
 {
@@ -69,6 +70,28 @@ namespace YelpCamp.Controllers
                 return RedirectToAction("Index");
             }
             return View(obj);
+        }
+
+        // GET - SHOW
+        public IActionResult Show(int id)
+        {
+            CampSiteVM campSiteVM = new CampSiteVM()
+            {
+                CampSite = new CampSite(),
+                CommentList = _db.Comment.Select(i => new Comment
+                {
+                    Id = i.Id,
+                    Author = i.Author,
+                    CommentBody = i.CommentBody
+                })
+            };
+
+            campSiteVM.CampSite = _db.Campsite.Find(id);
+            if(campSiteVM.CampSite == null)
+            {
+                return NotFound();
+            }
+            return View(campSiteVM);
         }
 
         // POST DELETE

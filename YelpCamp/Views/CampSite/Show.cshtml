@@ -1,0 +1,18 @@
+﻿@model YelpCamp.Models.ViewModels.CampSiteVM
+
+<div class="container container-fluid">
+    <h1>@Model.CampSite.Title</h1>
+    <img class="show-main-image" src="@Model.CampSite.ImageUrl" />
+    <p>@Model.CampSite.Description</p>
+
+
+    <div>
+        <h3>Comments</h3>
+        @foreach(var obj in Model.CommentList)
+        {
+            <div>@obj.Author</div>
+            <div>@obj.CommentBody</div>
+        }
+    </div>
+</div>
+

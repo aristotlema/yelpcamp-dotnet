@@ -15,5 +15,6 @@ namespace YelpCamp.Data
         }
 
         public DbSet<CampSite> Campsite { get; set; }
+        public DbSet<Comment> Comment { get; set; }
     }
 }
